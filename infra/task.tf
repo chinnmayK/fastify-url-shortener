@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "app" {
   container_definitions = jsonencode([
     {
       name      = "app"
-      image     = "${aws_ecr_repository.app.repository_url}:v8"
+      image     = "${aws_ecr_repository.app.repository_url}:v10"
       essential = true
 
       portMappings = [
@@ -33,7 +33,10 @@ resource "aws_ecs_task_definition" "app" {
         { name = "PORT", value = "5000" },
 
         { name = "LOG_LEVEL", value = "info" },
-
+        {
+          name  = "PGSSLMODE"
+          value = "require"
+        },
         { name = "POSTGRES_HOST", value = aws_db_instance.postgres.address },
         { name = "POSTGRES_USER", value = "postgres" },
         { name = "POSTGRES_PASSWORD", value = "postgres123" },
