@@ -29,7 +29,6 @@ const schema = {
     },
     POSTGRES_HOST: {
       type: 'string',
-      default: 'localhost',
     },
     POSTGRES_DB: {
       type: 'string',
