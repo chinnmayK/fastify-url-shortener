@@ -45,6 +45,11 @@ infra/crash.*.log
 # =========================
 .terraform/
 .terraform.lock.hcl
+.terraform.tfstate
+.terraform.tfstate.backup
+.terraform.tfvars
+crash.log
+crash.*.log
 
 # =========================
 # AWS
