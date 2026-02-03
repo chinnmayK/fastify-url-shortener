@@ -5,7 +5,11 @@ export default {
   password: env.postgres.password,
   database: env.postgres.db,
   host: env.postgres.host,
+  port: 5432,
   dialect: 'postgres',
+
+  // 🔴 THIS LINE IS CRITICAL
+  ssl: true,
 
   dialectOptions: {
     ssl: {
