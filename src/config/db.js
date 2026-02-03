@@ -1,20 +1,18 @@
 import env from './env.js';
 
-const { user, password, db, host } = env.postgres;
-
 export default {
-  development: {
-    username: user,
-    password: password,
-    database: db,
-    host: host,
-    dialect: 'postgres',
+  username: env.postgres.user,
+  password: env.postgres.password,
+  database: env.postgres.db,
+  host: env.postgres.host,
+  dialect: 'postgres',
+
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // required for AWS RDS
+    },
   },
-  production: {
-    username: user,
-    password: password,
-    database: db,
-    host: host,
-    dialect: 'postgres',
-  },
+
+  logging: false,
 };
