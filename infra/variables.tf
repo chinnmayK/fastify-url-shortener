@@ -9,3 +9,8 @@ variable "project_name" {
   type        = string
   default     = "fastify-url-shortener"
 }
+
+variable "public_subnet_ids" {
+  description = "Public subnet IDs"
+  type        = list(string)
+}
