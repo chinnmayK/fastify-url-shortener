@@ -1,17 +1,23 @@
 import pino from 'pino';
 import env from './env.js';
 
-const logger = pino({
-  level: env.logLevel,
-  formatters: {
-    bindings: (bindings) => {
-      return { pid: bindings.pid, host: bindings.hostname };
-    },
+// Fallback is CRITICAL for containers
+const logLevel = env.logLevel || 'info';
 
-    level: (label) => {
-      return { level: label };
-    },
+const logger = pino({
+  level: logLevel,
+
+  formatters: {
+    bindings: (bindings) => ({
+      pid: bindings.pid,
+      host: bindings.hostname,
+    }),
+
+    level: (label) => ({
+      level: label,
+    }),
   },
+
   timestamp: pino.stdTimeFunctions.isoTime,
 });
 
